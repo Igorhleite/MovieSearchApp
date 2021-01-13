@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/movie_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:padding="15dp"
+        android:background="@drawable/image_view_bg">
+
+        <ImageView
+            android:layout_marginStart="10dp"
+            android:id="@+id/movie_image_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center"
+
+            android:src="@drawable/mock" />
+
+        <TextView
+            android:id="@+id/movie_title_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/movie_image_id"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/movie_image_id"
+            android:text="TITULO"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/movie_gener_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movie_title_id"
+            android:layout_alignStart="@+id/movie_title_id"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="Genero:  is simply dummy text of t"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/movie_duration_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movie_gener_id"
+            android:layout_alignStart="@+id/movie_title_id"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="Duração:  999 min"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/movie_country_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movie_duration_id"
+            android:layout_alignStart="@+id/movie_title_id"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="País:  USA"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

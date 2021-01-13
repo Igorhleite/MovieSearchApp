@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="35dp"
+        android:src="@drawable/logo"
+        android:id="@+id/logo"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"/>
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="16dp"
+        android:layout_height="wrap_content"
+        android:text="Seu aplicativo de busca de filmes"
+        android:layout_below="@+id/logo"/>
+
+    <TextView
+        android:id="@+id/text_favorire"
+        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:text="Filmes favoritos"
+        android:layout_below="@+id/text_description"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_movies"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/movie_item"
+        android:layout_height="match_parent"
+        android:layout_below="@id/text_favorire"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+</RelativeLayout>
