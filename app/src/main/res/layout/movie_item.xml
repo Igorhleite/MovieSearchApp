@@ -31,7 +31,7 @@
             android:layout_alignTop="@+id/movie_image_id"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/movie_image_id"
-            android:text="Titulo Default"
+            android:text="@string/default_title"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
             android:layout_below="@+id/movie_title_id"
             android:layout_alignStart="@+id/movie_title_id"
             android:singleLine="true"
-            android:text="Year Default"
+            android:text="@string/default_year"
             android:textSize="16sp" />
 
         <TextView
@@ -52,7 +52,7 @@
             android:layout_below="@+id/movie_year_id"
             android:layout_alignStart="@+id/movie_title_id"
             android:singleLine="true"
-            android:text="Type Default"
+            android:text="@string/default_type"
             android:textSize="16sp" />
 
         <ImageButton

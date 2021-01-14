@@ -33,8 +33,6 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        recycler_view_movies.layoutManager = LinearLayoutManager(context)
-
         search_button.setOnClickListener {
 
             var queryParms = search_edit_text.text.toString()
@@ -62,7 +60,8 @@ class SearchFragment : Fragment() {
                                 val responseStatus = response.body()?.response as String
 
                                 if (responseStatus == "True") {
-                                    movieAdapter = MovieAdapter(response.body()?.mMediaEntityList as MutableList<MovieModel>)
+                                    movieAdapter =
+                                        MovieAdapter(response.body()?.mMediaEntityList as MutableList<MovieModel>)
                                     movieAdapter.notifyDataSetChanged()
                                     recycler_view_movies.adapter = movieAdapter
                                 } else {

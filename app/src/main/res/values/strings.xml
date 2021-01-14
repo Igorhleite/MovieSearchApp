@@ -5,4 +5,10 @@
     <string name="home">home</string>
     <string name="api_error_msg">Desculpe, erro na requisição!</string>
     <string name="empty_search_message">Nenhum título encontrado :(</string>
+    <string name="search_placeholder">Buscar</string>
+    <string name="logo_text">Seu aplicativo de busca de filmes</string>
+    <string name="movies_favorites_text">Filmes favoritos</string>
+    <string name="default_title">Titulo Default</string>
+    <string name="default_year">Year Default</string>
+    <string name="default_type">Type Default</string>
 </resources>
