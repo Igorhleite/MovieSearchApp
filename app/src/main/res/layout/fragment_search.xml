@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.SearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="160dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/logo" />
+
     <TextView
+        android:id="@+id/text_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_marginStart="16dp"
+        android:text="Seu aplicativo de busca de filmes"
+        android:textSize="16dp" />
+
+    <!--Search-->
+    <LinearLayout
+        android:id="@+id/search_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_description"
+        android:layout_margin="15dp"
+        android:background="@drawable/shape_shearch"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <!--Edit-Text-->
+        <EditText
+            android:id="@+id/search_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="Buscar"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+        <!--Button-->
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="90dp"
+            android:background="@drawable/shape_search1"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="0dp"
+            android:src="@drawable/ic_search"
+            android:tint="@color/black" />
+
+    </LinearLayout>
+
+    <!---RC-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_movies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/search" />
+        android:layout_below="@+id/search_container"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/movie_item" />
 
-</FrameLayout>
+
+</RelativeLayout>

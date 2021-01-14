@@ -1,12 +1,8 @@
 package com.example.movieshearch.view
 
-import android.app.SearchManager
-import android.content.Context
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.widget.Toast
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.FragmentTransaction
 import com.example.movieshearch.R
 import com.google.android.material.bottomnavigation.BottomNavigationView

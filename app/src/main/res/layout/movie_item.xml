@@ -7,7 +7,7 @@
    >
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -22,8 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:foregroundGravity="center"
-
-            android:src="@drawable/mock" />
+/>
 
         <TextView
             android:id="@+id/movie_title_id"
@@ -32,42 +31,42 @@
             android:layout_alignTop="@+id/movie_image_id"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/movie_image_id"
-            android:text="TITULO"
+            android:text="Titulo Default"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/movie_gener_id"
+            android:id="@+id/movie_year_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/movie_title_id"
             android:layout_alignStart="@+id/movie_title_id"
-            android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="Genero:  is simply dummy text of t"
+            android:text="Year Default"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/movie_duration_id"
+            android:id="@+id/movie_type_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/movie_gener_id"
+            android:layout_below="@+id/movie_year_id"
             android:layout_alignStart="@+id/movie_title_id"
-            android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="Duração:  999 min"
+            android:text="Type Default"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/movie_country_id"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/movie_duration_id"
-            android:layout_alignStart="@+id/movie_title_id"
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:text="País:  USA"
-            android:textSize="16sp" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="5dp"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_favorite"
+            android:background="@drawable/favorite_shape"
+            android:tint="@color/white" />
 
 
     </RelativeLayout>
