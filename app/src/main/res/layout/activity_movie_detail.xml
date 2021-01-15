@@ -4,26 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.HomeFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".view.MovieDetailActivity">
 
     <TextView
-        android:id="@+id/text_favorire"
+
+        android:id="@+id/text_teste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:text="@string/movies_favorites_text"
         android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_movies"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/text_favorire"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/movie_item" />
+        android:textStyle="bold"
+        />
 
 </RelativeLayout>

@@ -5,5 +5,6 @@
     <color name="headlines">#1D1D1B</color>
     <color name="light_orange">#FFDFC2</color>
     <color name="dark_orange">#F07A3E</color>
+    <color name="greyClaro">#D3D3D3</color>
 
 </resources>
