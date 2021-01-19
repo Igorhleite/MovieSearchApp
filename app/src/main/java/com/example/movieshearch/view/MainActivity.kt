@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                 }
                 R.id.bottomNavSearch -> {
-                    searchFragment = SearchFragment()
+                    searchFragment =
+                        SearchFragment()
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.frameLayout,searchFragment)

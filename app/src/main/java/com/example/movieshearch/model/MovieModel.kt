@@ -1,9 +1,13 @@
 package com.example.movieshearch.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "Movie")
 class MovieModel (
 
+    @PrimaryKey
     @SerializedName("Title")
     var title: String = "",
 

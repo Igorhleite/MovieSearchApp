@@ -11,7 +11,7 @@ import com.example.movieshearch.model.MovieModel
 import com.example.movieshearch.view.MovieDetailActivity
 
 
-class MovieAdapter(var movies: MutableList<MovieModel>, private val context: Context?) :
+class MovieAdapter(var movies: MutableList<MovieModel>) :
     RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -26,11 +26,11 @@ class MovieAdapter(var movies: MutableList<MovieModel>, private val context: Con
         val movie = movies[position]
         holder.bind(movie)
 
-        holder.itemView.setOnClickListener {
-            val intent = Intent(context, MovieDetailActivity::class.java)
-            intent.putExtra("movieId", movie.imdbID)
-            context?.startActivity(intent)
-        }
+        //      holder.itemView.setOnClickListener {
+        //         val intent = Intent(context, MovieDetailActivity::class.java)
+        //          intent.putExtra("movieId", movie.imdbID)
+        //          context?.startActivity(intent)
+        //     }
     }
 }
 

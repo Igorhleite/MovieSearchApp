@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieShearch">
-        <activity android:name=".view.MovieDetailActivity"></activity>
+        <activity android:name=".view.MovieDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".view.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
