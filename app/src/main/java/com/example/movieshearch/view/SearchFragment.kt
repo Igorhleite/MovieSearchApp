@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : Fragment() {
 
-    private lateinit var shearchViewModel : SearchViewModel
+    private lateinit var shearchViewModel: SearchViewModel
 
     private lateinit var movieAdapter: MovieAdapter
 

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movieshearch.view.viewholder.MovieViewHolder
 import com.example.movieshearch.R
 import com.example.movieshearch.model.MovieModel
-import com.example.movieshearch.view.MovieDetailActivity
 
 
 class MovieAdapter(var movies: MutableList<MovieModel>) :
