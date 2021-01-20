@@ -207,5 +207,22 @@
             />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:background="@color/light_orange"
+    >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/dark_orange"
+            />
+
+    </LinearLayout>
+
 
 </RelativeLayout>

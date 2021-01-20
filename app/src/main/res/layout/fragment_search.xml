@@ -47,4 +47,24 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/movie_item" />
 
+    <LinearLayout
+        android:layout_below="@+id/search_container"
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:visibility="gone"
+        >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/dark_orange"
+        />
+
+    </LinearLayout>
+
+
 </RelativeLayout>

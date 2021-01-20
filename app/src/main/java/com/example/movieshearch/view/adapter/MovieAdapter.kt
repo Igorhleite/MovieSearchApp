@@ -34,4 +34,3 @@ class MovieAdapter(var movies: MutableList<MovieModel>) :
               }
     }
 }
-
