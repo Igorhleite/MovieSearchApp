@@ -4,19 +4,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.movieshearch.model.MovieModel
-import com.example.movieshearch.service.repository.MovieRepository
+import com.example.movieshearch.service.repository.SearchMovieRepository
 
 class SearchViewModel() : ViewModel() {
 
-    private val movieRepository: MovieRepository =
-        MovieRepository()
+    private val searchMovieRepository: SearchMovieRepository =
+        SearchMovieRepository()
     var listaFilmes = MutableLiveData<MutableList<MovieModel>>()
 
     fun retrofitCall(queryParams: String) {
 
-        movieRepository.findByName(queryParams) // chama a função no repository
+        searchMovieRepository.findByName(queryParams) // chama a função no repository
 
-        movieRepository.movieListData.observeForever(Observer {
+        searchMovieRepository.movieListData.observeForever(Observer {
             listaFilmes.value = it.mMediaEntityList
         })
     }

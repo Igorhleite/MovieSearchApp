@@ -9,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MovieRepository {
+class SearchMovieRepository {
 
     val movieListData =
         MutableLiveData<SearchModel>() //implementa um live data "escutado" pela viewModel
@@ -33,4 +33,3 @@ class MovieRepository {
         })
     }
 }
-

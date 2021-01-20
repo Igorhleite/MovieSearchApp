@@ -3,11 +3,13 @@ package com.example.movieshearch.view.adapter
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieshearch.view.viewholder.MovieViewHolder
 import com.example.movieshearch.R
 import com.example.movieshearch.model.MovieModel
+import com.example.movieshearch.view.MovieDetailActivity
 
 
 class MovieAdapter(var movies: MutableList<MovieModel>) :
@@ -25,11 +27,11 @@ class MovieAdapter(var movies: MutableList<MovieModel>) :
         val movie = movies[position]
         holder.bind(movie)
 
-        //      holder.itemView.setOnClickListener {
-        //         val intent = Intent(context, MovieDetailActivity::class.java)
-        //          intent.putExtra("movieId", movie.imdbID)
-        //          context?.startActivity(intent)
-        //     }
+              holder.itemView.setOnClickListener {
+                 val intent = Intent(it.context, MovieDetailActivity::class.java)
+                  intent.putExtra("movieId", movie.imdbID)
+                  it.context?.startActivity(intent)
+              }
     }
 }
 
