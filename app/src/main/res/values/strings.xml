@@ -12,4 +12,7 @@
     <string name="type_text">Type:</string>
     <string name="boxoffice_text">BoxOffice:</string>
     <string name="awards_text">Awards:</string>
+    <string name="notFavorite">Favoritar</string>
+    <string name="isFavorite">Desfavoritar</string>
+    <string name="asasd">#FFFFF</string>
 </resources>

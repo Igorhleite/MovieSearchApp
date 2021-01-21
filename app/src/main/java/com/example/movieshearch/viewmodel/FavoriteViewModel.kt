@@ -17,6 +17,7 @@ class FavoriteViewModel(context: Context) : ViewModel() {
 
     var listaFilmes = MutableLiveData<MutableList<MovieModel>>()
 
+
     fun save(movie: MovieModel) {
         val exist =
             mFavoriteMovieRepository.getById(movie.imdbID) //verificando se existe registro no BD com o ID do filme
@@ -25,7 +26,11 @@ class FavoriteViewModel(context: Context) : ViewModel() {
         }
     }
 
-    fun getAll() {
+    fun delete(movie: MovieModel) {
+        mFavoriteMovieRepository.remove(movie)
+    }
+
+    fun getAll(){
         mFavoriteMovieRepository.getAll()
         mFavoriteMovieRepository.movieListData.observeForever(Observer {
             listaFilmes.value = it
