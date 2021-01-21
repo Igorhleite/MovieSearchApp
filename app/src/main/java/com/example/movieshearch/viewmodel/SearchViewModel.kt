@@ -1,5 +1,6 @@
 package com.example.movieshearch.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -12,24 +13,29 @@ class SearchViewModel() : ViewModel() {
     private val searchMovieRepository: SearchMovieRepository =
         SearchMovieRepository()
 
-    var listaFilmes = MutableLiveData<MutableList<MovieModel>>()
+    private val _movieList = MutableLiveData<MutableList<MovieModel>>()
+    val movieList: LiveData<MutableList<MovieModel>>
+        get() = _movieList
 
-    var progress = MutableLiveData<Boolean>()
+    private val _progress = MutableLiveData<Boolean>()
+    val progress: LiveData<Boolean>
+        get() = _progress
 
-    fun retrofitCall(queryParams: String) {
+    private val _searchStatus = MutableLiveData<Boolean>()
+    val searchStatus: LiveData<Boolean>
+        get() = _searchStatus
 
-        searchMovieRepository.findByName(queryParams) // chama a função no repository
-
+    fun searchMovie(queryParams: String) {
+        searchMovieRepository.findByName(queryParams)
         searchMovieRepository.movieListData.observeForever(Observer {
-        listaFilmes.value = it.mMediaEntityList
-      })
+            _movieList.value = it.mMediaEntityList
+        })
         searchMovieRepository.progress.observeForever(Observer {
-            progress.value = it
+            _progress.value = it
+        })
+        searchMovieRepository.searchStatus.observeForever(Observer {
+            _searchStatus.value = it
         })
     }
+
 }
-/**
- * Lembrar sempre que o observer necessita de um LifecycleOwner, ou seja um objeto que defina seu
- * ciclo de vida, nesse caso foi utilizado o observerForever que implementa um observador e não exige um
- * lifecycleowner
- * */

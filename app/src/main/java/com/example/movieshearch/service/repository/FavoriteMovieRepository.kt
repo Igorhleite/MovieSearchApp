@@ -1,15 +1,19 @@
 package com.example.movieshearch.service.repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movieshearch.model.MovieModel
-import com.example.movieshearch.model.SearchModel
 import com.example.movieshearch.service.repository.local.MovieDataBase
 
 class FavoriteMovieRepository(context: Context){
 
-    val movieListData = MutableLiveData<MutableList<MovieModel>>() //implementa um live data "escutado" pela viewModel
+    //liveData
+    private val _movieListData = MutableLiveData<MutableList<MovieModel>>()
+    val movieListData: LiveData<MutableList<MovieModel>>
+    get() = _movieListData
 
+    //access BD with DAO
     private val mDataBase = MovieDataBase.getInstance(context).movieDAO()
 
     fun save(movie: MovieModel): Boolean {
@@ -17,7 +21,7 @@ class FavoriteMovieRepository(context: Context){
     }
 
     fun getAll(): MutableList<MovieModel> {
-        movieListData.value = mDataBase.getAll()
+        _movieListData.value = mDataBase.getAll()
         return movieListData.value!!
     }
 

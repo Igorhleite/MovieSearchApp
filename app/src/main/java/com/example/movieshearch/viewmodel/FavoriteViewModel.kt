@@ -1,8 +1,7 @@
 package com.example.movieshearch.viewmodel
 
-import android.app.Application
 import android.content.Context
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -11,17 +10,18 @@ import com.example.movieshearch.service.repository.FavoriteMovieRepository
 
 class FavoriteViewModel(context: Context) : ViewModel() {
 
-    private val mContext = context
     private val mFavoriteMovieRepository: FavoriteMovieRepository =
-        FavoriteMovieRepository(mContext)
+        FavoriteMovieRepository(context)
 
-    var listaFilmes = MutableLiveData<MutableList<MovieModel>>()
+    //liveData
+    private val _movieList = MutableLiveData<MutableList<MovieModel>>()
+    val movieList: LiveData<MutableList<MovieModel>>
+        get() = _movieList
 
-
-    fun save(movie: MovieModel) {
+    fun save(movie: MovieModel) { //verify if exist movie em BD
         val exist =
-            mFavoriteMovieRepository.getById(movie.imdbID) //verificando se existe registro no BD com o ID do filme
-        if (exist == null) { //caso não exista salva o filme no BD
+            mFavoriteMovieRepository.getById(movie.imdbID)
+        if (exist == null) {
             mFavoriteMovieRepository.save(movie)
         }
     }
@@ -30,10 +30,10 @@ class FavoriteViewModel(context: Context) : ViewModel() {
         mFavoriteMovieRepository.remove(movie)
     }
 
-    fun getAll(){
+    fun getAll() {
         mFavoriteMovieRepository.getAll()
         mFavoriteMovieRepository.movieListData.observeForever(Observer {
-            listaFilmes.value = it
+            _movieList.value = it
         })
     }
 }

@@ -15,4 +15,7 @@
     <string name="notFavorite">Favoritar</string>
     <string name="isFavorite">Desfavoritar</string>
     <string name="asasd">#FFFFF</string>
+    <string name="errorTitle">Não encontramos :(</string>
+    <string name="errorBody">Desculpe, nenhum filme encontrato, tente outro título!!</string>
+    <string name="ok">OK</string>
 </resources>

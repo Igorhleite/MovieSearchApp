@@ -16,9 +16,7 @@ import kotlinx.android.synthetic.main.fragment_search.*
 class FavoriteFragment : Fragment() {
 
     private  var movieAdapter: FavoriteMovieAdapter = FavoriteMovieAdapter(mutableListOf())
-
     lateinit var favoriteViewModel: FavoriteViewModel
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +25,7 @@ class FavoriteFragment : Fragment() {
         favoriteViewModel = FavoriteViewModel(context as Context)
         favoriteViewModel.getAll()
 
-        favoriteViewModel.listaFilmes.observe(viewLifecycleOwner, Observer {
+        favoriteViewModel.movieList.observe(viewLifecycleOwner, Observer {
             movieAdapter = FavoriteMovieAdapter(it)
             movieAdapter.notifyDataSetChanged()
             recycler_view_movies.adapter = movieAdapter
@@ -35,7 +33,6 @@ class FavoriteFragment : Fragment() {
 
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     }
 }

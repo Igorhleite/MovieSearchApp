@@ -1,5 +1,7 @@
 package com.example.movieshearch.service.repository
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movieshearch.model.MovieDetailModel
 import com.example.movieshearch.service.Constants
@@ -10,17 +12,22 @@ import retrofit2.Response
 
 class DetailMovieRepository {
 
-    val movieDetailData = MutableLiveData<MovieDetailModel>() // live data "escutado" pela viewModel
+    //liveData
+    private val _movieDetailData = MutableLiveData<MovieDetailModel>()
+    val movieDetailData: LiveData<MovieDetailModel>
+        get() = _movieDetailData
 
-    val progress =
-        MutableLiveData<Boolean>() //implementa um live data "escutado" pela viewModel que controla a progressBar
+    private val _progress = MutableLiveData<Boolean>()
+    val progress: LiveData<Boolean>
+        get() = _progress
 
     fun findDetailById(movieId: String) {
-        progress.value = true
+        _progress.value = true
         val retrofitCall = RetrofitClient()
             .service().searchById(Constants.API_KEY, movieId)
         retrofitCall.enqueue(object : Callback<MovieDetailModel> {
             override fun onFailure(call: Call<MovieDetailModel>, t: Throwable) {
+                Log.i("retrofit", "Falha na chamada retrofit")
             }
 
             override fun onResponse(
@@ -28,8 +35,8 @@ class DetailMovieRepository {
                 response: Response<MovieDetailModel>
             ) {
                 response.let {
-                    movieDetailData.value = it.body()
-                    progress.value = false
+                    _movieDetailData.value = it.body()
+                    _progress.value = false
                 }
             }
         })
