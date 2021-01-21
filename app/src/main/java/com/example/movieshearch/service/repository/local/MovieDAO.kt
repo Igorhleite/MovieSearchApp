@@ -12,6 +12,9 @@ interface MovieDAO {
     @Update
     fun update(movie: MovieModel) : Int
 
+    @Delete
+    fun remove(movie: MovieModel)
+
     @Query("SELECT * FROM favorites WHERE id = :id")
     fun get(id: String): MovieModel
 

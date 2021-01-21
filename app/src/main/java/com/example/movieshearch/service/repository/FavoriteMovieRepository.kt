@@ -25,4 +25,8 @@ class FavoriteMovieRepository(context: Context){
         return mDataBase.get(id)
     }
 
+    fun remove(movie: MovieModel) {
+        return mDataBase.remove(movie)
+    }
+
 }
