@@ -10,7 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var homeFragment: HomeFragment
+    lateinit var favoriteFragment: FavoriteFragment
 
     lateinit var searchFragment: SearchFragment
 
@@ -20,10 +20,10 @@ class MainActivity : AppCompatActivity() {
 
         var bottomNavigationView : BottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-        homeFragment = HomeFragment()
+        favoriteFragment = FavoriteFragment()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.frameLayout,homeFragment)
+            .replace(R.id.frameLayout,favoriteFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
 
@@ -31,10 +31,10 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when(item.itemId){
                 R.id.bottomNavHome -> {
-                    homeFragment = HomeFragment()
+                    favoriteFragment = FavoriteFragment()
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.frameLayout,homeFragment)
+                        .replace(R.id.frameLayout,favoriteFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
