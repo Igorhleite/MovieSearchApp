@@ -1,5 +1,7 @@
-package com.example.movieshearch.service
+package com.example.movieshearch.service.repository.remote
 
+import com.example.movieshearch.service.Constants
+import com.example.movieshearch.service.repository.remote.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -9,7 +11,7 @@ class RetrofitClient {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun service() : ApiService{
+    fun service() : ApiService {
         return retrofit.create(ApiService::class.java)
     }
 }

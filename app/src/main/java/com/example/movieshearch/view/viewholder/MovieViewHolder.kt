@@ -20,6 +20,5 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         movieYear.text = model.year
         movieType.text = model.type.capitalize()
         Picasso.get().load(model.poster).into(movieImage)
-        var movieId = model.imdbID
     }
 }

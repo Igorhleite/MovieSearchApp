@@ -12,7 +12,7 @@ import com.example.movieshearch.viewmodel.FavoriteViewModel
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 
-class MovieAdapter(var movies: MutableList<MovieModel>) :
+class FavoriteMovieAdapter(var movies: MutableList<MovieModel>) :
     RecyclerView.Adapter<MovieViewHolder>() {
 
     lateinit var favoriteViewModel: FavoriteViewModel
@@ -28,6 +28,8 @@ class MovieAdapter(var movies: MutableList<MovieModel>) :
         val movie = movies[position]
         holder.bind(movie)
         favoriteViewModel = FavoriteViewModel(holder.itemView.context)
+
+        holder.itemView.favorite.text = holder.itemView.context.getString(R.string.isFavorite)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, MovieDetailActivity::class.java)
