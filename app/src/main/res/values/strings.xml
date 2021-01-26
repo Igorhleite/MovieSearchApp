@@ -17,5 +17,7 @@
     <string name="asasd">#FFFFF</string>
     <string name="errorTitle">Não encontramos :(</string>
     <string name="errorBody">Desculpe, nenhum filme encontrato, tente outro título!!</string>
+    <string name="errorRequest">Erro na requisição</string>
+    <string name="errorRequestBody">Desculpe, houve um erro na requisição, tente novamente mais tarde</string>
     <string name="ok">OK</string>
 </resources>

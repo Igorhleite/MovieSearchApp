@@ -1,21 +1,17 @@
 package com.example.movieshearch.view.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieshearch.view.viewholder.MovieViewHolder
 import com.example.movieshearch.R
 import com.example.movieshearch.model.MovieModel
-import com.example.movieshearch.view.MovieDetailActivity
-import com.example.movieshearch.viewmodel.FavoriteViewModel
+import com.example.movieshearch.view.listener.MovieListener
 import kotlinx.android.synthetic.main.movie_item.view.*
 
-
-class MovieAdapter(var movies: MutableList<MovieModel>) :
+class MovieAdapter(var movies: MutableList<MovieModel>, var movieListener: MovieListener) :
     RecyclerView.Adapter<MovieViewHolder>() {
 
-    lateinit var favoriteViewModel: FavoriteViewModel
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val item = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
@@ -27,20 +23,17 @@ class MovieAdapter(var movies: MutableList<MovieModel>) :
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
         holder.bind(movie)
-        favoriteViewModel = FavoriteViewModel(holder.itemView.context)
 
-        holder.itemView.setOnClickListener {
-            val intent = Intent(it.context, MovieDetailActivity::class.java)
-            intent.putExtra("movieId", movie.imdbID)
-            it.context?.startActivity(intent)
+        holder.itemView.setOnClickListener() {
+            movieListener.onClick(movies[position].imdbID)
         }
 
         holder.itemView.favorite.setOnClickListener {
             if (holder.itemView.favorite.text == it.context.getString(R.string.notFavorite)) {
-                favoriteViewModel.save(movie)
+                movieListener.onClickFavoriteButton(movie)
                 holder.itemView.favorite.text = it.context.getString(R.string.isFavorite)
             } else {
-                favoriteViewModel.delete(movie)
+                movieListener.onClickDisfavorButton(movie)
                 holder.itemView.favorite.text = it.context.getString(R.string.notFavorite)
             }
         }

@@ -21,21 +21,34 @@ class SearchViewModel() : ViewModel() {
     val progress: LiveData<Boolean>
         get() = _progress
 
-    private val _searchStatus = MutableLiveData<Boolean>()
-    val searchStatus: LiveData<Boolean>
-        get() = _searchStatus
+    private val _movieNotExist = MutableLiveData<Boolean>()
+    val movieNotExist: LiveData<Boolean>
+        get() = _movieNotExist
+
+    private val _responseControl = MutableLiveData<Boolean>()
+    val responseControl: LiveData<Boolean>
+        get() = _responseControl
 
     fun searchMovie(queryParams: String) {
+        implementsObservers()
+        _progress.value = true
         searchMovieRepository.findByName(queryParams)
+    }
+
+    private fun implementsObservers() {
         searchMovieRepository.movieListData.observeForever(Observer {
             _movieList.value = it.mMediaEntityList
         })
+
+        searchMovieRepository.movieNotExist.observeForever(Observer {
+            _movieNotExist.value = it
+        })
+
         searchMovieRepository.progress.observeForever(Observer {
             _progress.value = it
         })
-        searchMovieRepository.searchStatus.observeForever(Observer {
-            _searchStatus.value = it
+        searchMovieRepository.responseControl.observeForever(Observer {
+            _responseControl.value = it
         })
     }
-
 }

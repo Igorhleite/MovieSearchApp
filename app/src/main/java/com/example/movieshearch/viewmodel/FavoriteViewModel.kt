@@ -8,10 +8,10 @@ import androidx.lifecycle.ViewModel
 import com.example.movieshearch.model.MovieModel
 import com.example.movieshearch.service.repository.FavoriteMovieRepository
 
-class FavoriteViewModel(context: Context) : ViewModel() {
+class FavoriteViewModel() : ViewModel() {
 
     private val mFavoriteMovieRepository: FavoriteMovieRepository =
-        FavoriteMovieRepository(context)
+        FavoriteMovieRepository()
 
     //liveData
     private val _movieList = MutableLiveData<MutableList<MovieModel>>()
