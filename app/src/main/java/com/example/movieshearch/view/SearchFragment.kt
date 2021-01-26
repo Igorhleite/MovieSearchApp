@@ -19,12 +19,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_search.*
 
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), MovieListener {
 
     private lateinit var shearchViewModel: SearchViewModel
-    private var movieAdapter: MovieAdapter = MovieAdapter(mutableListOf())
+    private var movieAdapter: MovieAdapter = MovieAdapter(mutableListOf(), this)
     lateinit var favoriteViewModel: FavoriteViewModel
-    private lateinit var mListener: MovieListener
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +32,6 @@ class SearchFragment : Fragment() {
         favoriteViewModel = FavoriteViewModel()
         shearchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         implementObservers()
-        implementListener()
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
@@ -41,11 +39,6 @@ class SearchFragment : Fragment() {
         search_button.setOnClickListener {
             searchMovieByName(search_edit_text.text.toString())
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        movieAdapter.attachListener(mListener)
     }
 
     private fun searchMovieByName(movieName: String) {
@@ -56,9 +49,8 @@ class SearchFragment : Fragment() {
     private fun implementObservers() {
         // observer's
         shearchViewModel.movieList.observe(viewLifecycleOwner, Observer {
-            movieAdapter = MovieAdapter(it)
+            movieAdapter = MovieAdapter(it, this)
             movieAdapter.notifyDataSetChanged()
-            movieAdapter.attachListener(mListener)
             recycler_view_movies.adapter = movieAdapter
         })
 
@@ -82,31 +74,27 @@ class SearchFragment : Fragment() {
 
         // for control if response status
         shearchViewModel.responseControl.observe(viewLifecycleOwner, Observer {
-                MaterialAlertDialogBuilder(context as Context)
-                    .setTitle(getString(R.string.errorRequest))
-                    .setMessage(getString(R.string.errorRequestBody))
-                    .setNeutralButton(getString(R.string.ok)) { _, _ ->
-                        search_edit_text.text.clear()
-                    }
-                    .show()
+            MaterialAlertDialogBuilder(context as Context)
+                .setTitle(getString(R.string.errorRequest))
+                .setMessage(getString(R.string.errorRequestBody))
+                .setNeutralButton(getString(R.string.ok)) { _, _ ->
+                    search_edit_text.text.clear()
+                }
+                .show()
         })
     }
 
-    private fun implementListener() {
-        mListener = object : MovieListener {
-            override fun onClick(id: String) {
-                val intent = Intent(context, MovieDetailActivity::class.java)
-                intent.putExtra("movieId", id)
-                context?.startActivity(intent)
-            }
+    override fun onClick(id: String) {
+        val intent = Intent(context, MovieDetailActivity::class.java)
+        intent.putExtra("movieId", id)
+        context?.startActivity(intent)
+    }
 
-            override fun onClickFavoriteButton(movie: MovieModel) {
-                favoriteViewModel.save(movie)
-            }
+    override fun onClickFavoriteButton(movie: MovieModel) {
+        favoriteViewModel.save(movie)
+    }
 
-            override fun onClickDisfavorButton(movie: MovieModel) {
-                favoriteViewModel.delete(movie)
-            }
-        }
+    override fun onClickDisfavorButton(movie: MovieModel) {
+        favoriteViewModel.delete(movie)
     }
 }

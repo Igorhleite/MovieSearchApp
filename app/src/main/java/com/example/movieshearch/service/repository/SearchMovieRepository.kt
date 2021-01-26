@@ -1,6 +1,5 @@
 package com.example.movieshearch.service.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movieshearch.model.SearchModel
@@ -21,8 +20,8 @@ class SearchMovieRepository {
     val movieNotExist: LiveData<Boolean>
         get() = _movieNotExist
 
-    private val _responseControl = MutableLiveData<String>()
-    val responseControl: LiveData<String>
+    private val _responseControl = MutableLiveData<Boolean>()
+    val responseControl: LiveData<Boolean>
         get() = _responseControl
 
     private val _progress = MutableLiveData<Boolean>()
@@ -38,18 +37,19 @@ class SearchMovieRepository {
                         val responsStatus = it.body()?.response
                         if (responsStatus == "True") {
                             _progress.value = false
+                            _movieNotExist.value = false
                             _movieListData.value = it.body()
                         } else if (responsStatus == "False") {
                             _movieNotExist.value = true
                         }
                     }
                     else if (it.code() == 401) {
-                        _responseControl.value = it.code().toString()
+                        _responseControl.value = true
                     }
                 }
             }
             override fun onFailure(call: Call<SearchModel>, t: Throwable) {
-                _responseControl.value = "Erro na chamada Retrofit"
+                _responseControl.value = true
             }
         })
     }

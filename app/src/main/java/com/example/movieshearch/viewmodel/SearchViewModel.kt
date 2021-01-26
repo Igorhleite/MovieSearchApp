@@ -25,8 +25,8 @@ class SearchViewModel() : ViewModel() {
     val movieNotExist: LiveData<Boolean>
         get() = _movieNotExist
 
-    private val _responseControl = MutableLiveData<String>()
-    val responseControl: LiveData<String>
+    private val _responseControl = MutableLiveData<Boolean>()
+    val responseControl: LiveData<Boolean>
         get() = _responseControl
 
     fun searchMovie(queryParams: String) {

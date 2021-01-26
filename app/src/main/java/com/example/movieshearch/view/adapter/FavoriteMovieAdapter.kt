@@ -10,14 +10,12 @@ import com.example.movieshearch.view.listener.MovieListener
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 
-class FavoriteMovieAdapter(var movies: MutableList<MovieModel>) :
+class FavoriteMovieAdapter(var movies: MutableList<MovieModel>, var movieListener: MovieListener) :
     RecyclerView.Adapter<MovieViewHolder>() {
-
-    private lateinit var mlistener: MovieListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val item = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
-        return MovieViewHolder(item, mlistener)
+        return MovieViewHolder(item)
     }
 
     override fun getItemCount(): Int = movies.size
@@ -25,10 +23,19 @@ class FavoriteMovieAdapter(var movies: MutableList<MovieModel>) :
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
         holder.bind(movie)
-        holder.itemView.favorite.text = holder.itemView.context.getString(R.string.isFavorite)
-    }
 
-    fun attachListener(listener: MovieListener) {
-        mlistener = listener
+        holder.itemView.setOnClickListener() {
+            movieListener.onClick(movies[position].imdbID)
+        }
+
+        holder.itemView.favorite.setOnClickListener {
+            if (holder.itemView.favorite.text == it.context.getString(R.string.notFavorite)) {
+                movieListener.onClickFavoriteButton(movie)
+                holder.itemView.favorite.text = it.context.getString(R.string.isFavorite)
+            } else {
+                movieListener.onClickDisfavorButton(movie)
+                holder.itemView.favorite.text = it.context.getString(R.string.notFavorite)
+            }
+        }
     }
 }
