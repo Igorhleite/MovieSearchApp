@@ -26,16 +26,21 @@ class SearchViewModel() : ViewModel() {
         get() = _searchStatus
 
     fun searchMovie(queryParams: String) {
+        implementsObservers()
         searchMovieRepository.findByName(queryParams)
+    }
+
+    private fun implementsObservers() {
         searchMovieRepository.movieListData.observeForever(Observer {
             _movieList.value = it.mMediaEntityList
         })
-        searchMovieRepository.progress.observeForever(Observer {
-            _progress.value = it
-        })
+
         searchMovieRepository.searchStatus.observeForever(Observer {
             _searchStatus.value = it
         })
-    }
 
+        searchMovieRepository.progress.observeForever(Observer {
+            _progress.value = it
+        })
+    }
 }

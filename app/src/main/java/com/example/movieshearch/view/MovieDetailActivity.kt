@@ -19,12 +19,13 @@ class MovieDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
-
         detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-
         val movieId = intent.getStringExtra("movieId").toString()
         detailViewModel.searchMovieById(movieId)
+        implementObservers()
+    }
 
+    private fun implementObservers() {
         detailViewModel.movieDetail.observe(this, Observer {
             movie_title.text = it.title
             movie_gener.text = it.genre
@@ -37,7 +38,6 @@ class MovieDetailActivity : AppCompatActivity() {
             movie_boxoffice.text = it.boxOffice
             movie_awards.text = it.awards
         })
-
         detailViewModel.progress.observe(this, Observer {
             progressBar.isVisible = it
         })
