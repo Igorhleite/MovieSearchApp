@@ -67,8 +67,8 @@ class SearchFragment : Fragment() {
             progressBar.isVisible = it
         })
 
-        // for control search status
-        shearchViewModel.searchStatus.observe(viewLifecycleOwner, Observer {
+        // for control if movie exist
+        shearchViewModel.movieNotExist.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 MaterialAlertDialogBuilder(context as Context)
                     .setTitle(getString(R.string.errorTitle))
@@ -78,6 +78,17 @@ class SearchFragment : Fragment() {
                     }
                     .show()
             }
+        })
+
+        // for control if response status
+        shearchViewModel.responseControl.observe(viewLifecycleOwner, Observer {
+                MaterialAlertDialogBuilder(context as Context)
+                    .setTitle(getString(R.string.errorRequest))
+                    .setMessage(getString(R.string.errorRequestBody))
+                    .setNeutralButton(getString(R.string.ok)) { _, _ ->
+                        search_edit_text.text.clear()
+                    }
+                    .show()
         })
     }
 
