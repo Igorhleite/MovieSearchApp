@@ -42,6 +42,7 @@ class SearchFragment : Fragment(), MovieListener {
     }
 
     private fun searchMovieByName(movieName: String) {
+        movieAdapter.movies.clear()
         shearchViewModel.searchMovie(movieName)
         search_edit_text.onEditorAction(EditorInfo.IME_ACTION_DONE)
     }
@@ -61,27 +62,27 @@ class SearchFragment : Fragment(), MovieListener {
 
         // for control if movie exist
         shearchViewModel.movieNotExist.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                MaterialAlertDialogBuilder(context as Context)
-                    .setTitle(getString(R.string.errorTitle))
-                    .setMessage(getString(R.string.errorBody))
-                    .setNeutralButton(getString(R.string.ok)) { _, _ ->
-                        search_edit_text.text.clear()
-                    }
-                    .show()
+            if(it == true) {
+                errorTratative(getString(R.string.errorTitle), getString(R.string.errorBody))
             }
         })
 
         // for control if response status
         shearchViewModel.responseControl.observe(viewLifecycleOwner, Observer {
-            MaterialAlertDialogBuilder(context as Context)
-                .setTitle(getString(R.string.errorRequest))
-                .setMessage(getString(R.string.errorRequestBody))
-                .setNeutralButton(getString(R.string.ok)) { _, _ ->
-                    search_edit_text.text.clear()
-                }
-                .show()
+            if(it == true) {
+                errorTratative(getString(R.string.errorRequest), getString(R.string.errorRequestBody))
+            }
         })
+    }
+
+    fun errorTratative(title: String, message: String) {
+        MaterialAlertDialogBuilder(context as Context)
+            .setTitle(title)
+            .setMessage(message)
+            .setNeutralButton(getString(R.string.ok)) { _, _ ->
+                search_edit_text.text.clear()
+            }
+            .show()
     }
 
     override fun onClick(id: String) {

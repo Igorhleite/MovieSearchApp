@@ -20,7 +20,7 @@ class SearchMovieRepository {
     val movieNotExist: LiveData<Boolean>
         get() = _movieNotExist
 
-    private val _responseControl = MutableLiveData<Boolean>()
+    private val _responseControl = MutableLiveData<Boolean>(false)
     val responseControl: LiveData<Boolean>
         get() = _responseControl
 
@@ -29,6 +29,8 @@ class SearchMovieRepository {
         get() = _progress
 
     fun findByName(queryParms: String) {
+        _movieNotExist.value = false
+        _progress.value = true
         val retrofiCall = RetrofitClient().service().searchByName(Constants.API_KEY, queryParms)
         retrofiCall.enqueue(object : Callback<SearchModel> {
             override fun onResponse(call: Call<SearchModel>, response: Response<SearchModel>) {
@@ -37,9 +39,9 @@ class SearchMovieRepository {
                         val responsStatus = it.body()?.response
                         if (responsStatus == "True") {
                             _progress.value = false
-                            _movieNotExist.value = false
                             _movieListData.value = it.body()
                         } else if (responsStatus == "False") {
+                            _progress.value = false
                             _movieNotExist.value = true
                         }
                     }
@@ -49,7 +51,6 @@ class SearchMovieRepository {
                 }
             }
             override fun onFailure(call: Call<SearchModel>, t: Throwable) {
-                _responseControl.value = true
             }
         })
     }

@@ -23,6 +23,7 @@ class FavoriteMovieAdapter(var movies: MutableList<MovieModel>, var movieListene
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
         holder.bind(movie)
+        holder.itemView.favorite.text = "Desfavoritar"
 
         holder.itemView.setOnClickListener() {
             movieListener.onClick(movies[position].imdbID)
