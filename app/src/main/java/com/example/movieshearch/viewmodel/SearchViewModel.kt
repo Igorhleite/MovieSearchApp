@@ -30,9 +30,8 @@ class SearchViewModel() : ViewModel() {
         get() = _responseControl
 
     fun searchMovie(queryParams: String) {
-        implementsObservers()
-        _progress.value = true
         searchMovieRepository.findByName(queryParams)
+        implementsObservers()
     }
 
     private fun implementsObservers() {
