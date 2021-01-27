@@ -9,7 +9,7 @@ import com.example.movieshearch.R
 import com.example.movieshearch.viewmodel.DetailViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_movie_detail.*
-import kotlinx.android.synthetic.main.activity_movie_detail.progressBar
+import kotlinx.android.synthetic.main.activity_movie_detail.shimmer_view_container
 
 
 class MovieDetailActivity : AppCompatActivity() {
@@ -23,6 +23,7 @@ class MovieDetailActivity : AppCompatActivity() {
         val movieId = intent.getStringExtra("movieId").toString()
         detailViewModel.searchMovieById(movieId)
         implementObservers()
+        shimmer_view_container.startShimmerAnimation()
     }
 
     private fun implementObservers() {
@@ -37,9 +38,16 @@ class MovieDetailActivity : AppCompatActivity() {
             movie_type.text = it.type
             movie_boxoffice.text = it.boxOffice
             movie_awards.text = it.awards
+            shimmer_view_container.stopShimmerAnimation()
         })
         detailViewModel.progress.observe(this, Observer {
-            progressBar.isVisible = it
+            shimmer_view_container.isVisible= it
+            static_icons.isVisible = !it
+            ic_overview.isVisible = !it
+            ic_type_title.isVisible = !it
+            ic_boxoffice_title.isVisible = !it
+            ic_awards_title.isVisible = !it
+            orange_id.isVisible = !it
         })
     }
 }

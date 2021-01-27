@@ -17,10 +17,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
         android:layout_margin="10dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/white"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -39,12 +39,12 @@
         android:layout_height="237dp"
         android:layout_below="@+id/movie_gener"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        />
+        android:layout_marginTop="15dp" />
     <!--Icons-->
     <!--Icons-->
 
     <LinearLayout
+        android:id="@+id/static_icons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/orange_id"
@@ -133,16 +133,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ic_overview"
-        android:layout_marginStart="20dp"
-        />
+        android:layout_marginStart="20dp" />
 
     <LinearLayout
         android:id="@+id/boxtype"
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/movie_description"
         android:layout_alignStart="@id/movie_description"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -156,17 +155,16 @@
             android:id="@+id/movie_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            />
+            android:layout_marginStart="5dp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/boxBoxoffice"
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/boxtype"
         android:layout_alignStart="@id/movie_description"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -180,16 +178,15 @@
             android:id="@+id/movie_boxoffice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-           />
+            android:layout_marginStart="5dp" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/boxBoxoffice"
         android:layout_alignStart="@id/movie_description"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -203,26 +200,28 @@
             android:id="@+id/movie_awards"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            />
+            android:layout_marginStart="5dp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/progressBar"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:visibility="gone"
+        android:id="@+id/shimmer_view_container"
         android:layout_width="match_parent"
-        android:gravity="center"
         android:layout_height="match_parent"
-        android:background="@color/light_orange"
-    >
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        app:duration="2">
 
-        <ProgressBar
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/dark_orange"
-            />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <include layout="@layout/movie_detail_placeholder_layout" />
+        </LinearLayout>
 
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </RelativeLayout>

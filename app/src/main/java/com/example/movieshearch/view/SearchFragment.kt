@@ -3,7 +3,9 @@ package com.example.movieshearch.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -15,6 +17,7 @@ import com.example.movieshearch.view.adapter.MovieAdapter
 import com.example.movieshearch.view.listener.MovieListener
 import com.example.movieshearch.viewmodel.FavoriteViewModel
 import com.example.movieshearch.viewmodel.SearchViewModel
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_search.*
 
@@ -25,6 +28,8 @@ class SearchFragment : Fragment(), MovieListener {
     private var movieAdapter: MovieAdapter = MovieAdapter(mutableListOf(), this)
     lateinit var favoriteViewModel: FavoriteViewModel
     var alertControl: Boolean = false
+    private var mShimmerViewContainer: ShimmerFrameLayout? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,12 +38,14 @@ class SearchFragment : Fragment(), MovieListener {
         favoriteViewModel = FavoriteViewModel()
         searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         implementObservers()
+        mShimmerViewContainer = shimmer_view_container
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         search_button.setOnClickListener {
             searchMovieByName(search_edit_text.text.toString())
+            mShimmerViewContainer?.isVisible = false
         }
     }
 
@@ -46,6 +53,7 @@ class SearchFragment : Fragment(), MovieListener {
         movieAdapter.movies.clear()
         searchViewModel.searchMovie(movieName)
         alertControl = false
+        shimmer_view_container.startShimmerAnimation()
         search_edit_text.onEditorAction(EditorInfo.IME_ACTION_DONE)
     }
 
@@ -56,11 +64,12 @@ class SearchFragment : Fragment(), MovieListener {
             movieAdapter.notifyDataSetChanged()
             recycler_view_movies.adapter = movieAdapter
             alertControl = false
+            shimmer_view_container.stopShimmerAnimation()
         })
 
-//        // for control loading
+        // for control loading
         searchViewModel.progress.observe(viewLifecycleOwner, Observer {
-            progressBar.isVisible = it
+            shimmer_view_container.isVisible = it
         })
 
         // for control if movie exist
@@ -88,6 +97,7 @@ class SearchFragment : Fragment(), MovieListener {
                 .setMessage(message)
                 .setNeutralButton(getString(R.string.ok)) { _, _ ->
                     search_edit_text.text.clear()
+                    shimmer_view_container.isVisible = false
                 }
                 .show()
             alertControl = true
@@ -107,4 +117,5 @@ class SearchFragment : Fragment(), MovieListener {
     override fun onClickDisfavorButton(movie: MovieModel) {
         favoriteViewModel.delete(movie)
     }
+
 }

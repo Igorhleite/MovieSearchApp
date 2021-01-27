@@ -7,4 +7,6 @@
     <color name="dark_orange">#F07A3E</color>
     <color name="greyClaro">#D3D3D3</color>
     <color name="transparent">#70D3D3D3</color>
+    <color name="shimmmerBackground">#dddddd</color>
+
 </resources>
