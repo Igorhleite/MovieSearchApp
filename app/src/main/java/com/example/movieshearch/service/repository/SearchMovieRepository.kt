@@ -41,7 +41,6 @@ class SearchMovieRepository {
                             _progress.value = false
                             _movieListData.value = it.body()
                         } else if (responsStatus == "False") {
-                            _progress.value = false
                             _movieNotExist.value = true
                         }
                     }
