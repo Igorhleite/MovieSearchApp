@@ -1,6 +1,6 @@
 # MovieSearch App
 
-This project is part of my learning in Kotlin for Android application development, feel free to send feedback on the implemented implementations.
+This project is part of my learning in Kotlin for Android application development, feel free to send feedback on the implementations.
 
 You can use this Project as you wish, be for study!
 
